@@ -235,7 +235,17 @@ static CGFloat const ATLButtonHeight = 28.0f;
         [self.inputToolBarDelegate messageInputToolbarDidEndTyping:self];
     }
     [self.inputToolBarDelegate messageInputToolbar:self didTapRightAccessoryButton:self.rightAccessoryButton];
-    self.textInputView.text = @"";
+    
+    BOOL shouldClear = YES;
+    
+    if ([self.inputToolBarDelegate respondsToSelector:@selector(inputToolbarShouldClearText:)]) {
+        shouldClear = [self.inputToolBarDelegate inputToolbarShouldClearText:self];
+    }
+    
+    if (shouldClear) {
+        self.textInputView.text = @"";
+    }
+    
     [self setNeedsLayout];
     self.mediaAttachments = nil;
     self.attributedStringForMessageParts = nil;

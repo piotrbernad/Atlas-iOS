@@ -59,6 +59,11 @@ extern NSString *const ATLMessageInputToolbarAccessibilityLabel;
  */
 - (void)messageInputToolbarDidEndTyping:(ATLMessageInputToolbar *)messageInputToolbar;
 
+/**
+ @abstract Return YES if you want to clear text from inputToolbar after tapping right accessory button. Default YES.
+ */
+- (BOOL)inputToolbarShouldClearText:(ATLMessageInputToolbar *)messageInputToolbar;
+
 @end
 
 /**
